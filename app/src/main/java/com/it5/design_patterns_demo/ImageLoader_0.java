@@ -43,20 +43,20 @@ public class ImageLoader_0 {
         Bitmap bitmap=mImageCache.get(url);
         if (bitmap!=null){
 //            imageView.setImageBitmap(bitmap);
-            new DisplayImg(imageView,bitmap);
+            ImgUtil.displayImg(imageView,bitmap);
             return;
         }
         service.submit(new Runnable() {
             @Override
             public void run() {
-                final Bitmap bitmap=DisplayImg.downloadImage(url);
+                final Bitmap bitmap= ImgUtil.downloadImage(url);
                 if (bitmap==null) {
                     return;
                 }
             /*    if (imageView.getTag().equals(url)) {
                     imageView.setImageBitmap(bitmap);
                 }*/
-                new DisplayImg(imageView,bitmap);
+                ImgUtil.displayImg(imageView,bitmap);
                 Log.e("img",bitmap.getHeight()+":"+bitmap.getWidth());
                 mImageCache.put(url,bitmap);
             }

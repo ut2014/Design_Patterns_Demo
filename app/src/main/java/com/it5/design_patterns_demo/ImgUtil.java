@@ -12,9 +12,9 @@ import java.net.URL;
 /**
  * Created by IT5 on 2016/8/15.
  */
-public class DisplayImg {
+public class ImgUtil {
     private static Handler handler=new Handler(Looper.getMainLooper());
-    public DisplayImg(final ImageView imageView, final Bitmap bitmap){
+    public static void displayImg(final ImageView imageView, final Bitmap bitmap){
         handler.post(new Runnable() {
             @Override
             public void run() {

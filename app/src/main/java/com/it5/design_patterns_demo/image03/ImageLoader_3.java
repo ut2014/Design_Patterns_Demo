@@ -3,7 +3,7 @@ package com.it5.design_patterns_demo.image03;
 import android.graphics.Bitmap;
 import android.widget.ImageView;
 
-import com.it5.design_patterns_demo.DisplayImg;
+import com.it5.design_patterns_demo.ImgUtil;
 import com.it5.design_patterns_demo.image01.ImageCache;
 import com.it5.design_patterns_demo.image02.DiskCache;
 
@@ -12,6 +12,7 @@ import java.util.concurrent.Executors;
 
 /**
  * Created by IT5 on 2016/8/15.
+ * 使用 内存与sd缓存
  */
 public class ImageLoader_3 {
     //内存缓存
@@ -38,7 +39,7 @@ public class ImageLoader_3 {
         }
         if (bitmap!=null) {
 //            imageView.setImageBitmap(bitmap);
-            new DisplayImg(imageView,bitmap);
+            ImgUtil.displayImg(imageView,bitmap);
             return;
         }
 
@@ -47,12 +48,12 @@ public class ImageLoader_3 {
         service.submit(new Runnable() {
             @Override
             public void run() {
-                Bitmap bitmap=DisplayImg.downloadImage(url);
+                Bitmap bitmap= ImgUtil.downloadImage(url);
                 if (bitmap==null) {
                     return;
                 }
                 if (imageView.getTag().equals(url)) {
-                    new DisplayImg(imageView,bitmap);
+                    ImgUtil.displayImg(imageView,bitmap);
                 }
                 imageCache.put(url,bitmap);
                 diskCache.put(url,bitmap);

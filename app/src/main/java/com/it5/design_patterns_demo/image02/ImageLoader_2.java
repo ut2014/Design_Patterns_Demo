@@ -3,7 +3,7 @@ package com.it5.design_patterns_demo.image02;
 import android.graphics.Bitmap;
 import android.widget.ImageView;
 
-import com.it5.design_patterns_demo.DisplayImg;
+import com.it5.design_patterns_demo.ImgUtil;
 import com.it5.design_patterns_demo.image01.ImageCache;
 
 import java.util.concurrent.ExecutorService;
@@ -27,7 +27,7 @@ public class ImageLoader_2 {
         Bitmap bitmap = isUseDiskCache ? diskCache.get(url) : imageCache.get(url);
         if (bitmap != null) {
 //            imageView.setImageBitmap(bitmap);
-            new DisplayImg(imageView,bitmap);
+            ImgUtil.displayImg(imageView,bitmap);
             return;
         }
         //没有缓存，则提交给线程池进行下载
@@ -35,11 +35,11 @@ public class ImageLoader_2 {
         service.submit(new Runnable() {
             @Override
             public void run() {
-                Bitmap bitmap = DisplayImg.downloadImage(url);
+                Bitmap bitmap = ImgUtil.downloadImage(url);
                 if (bitmap == null) return;
                 if (imageView.getTag().equals(url)) {
 //                    imageView.setImageBitmap(bitmap);
-                    new DisplayImg(imageView,bitmap);
+                    ImgUtil.displayImg(imageView,bitmap);
                 }
                 imageCache.put(url, bitmap);
                 diskCache.put(url,bitmap);

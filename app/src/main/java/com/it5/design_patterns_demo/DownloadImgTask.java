@@ -14,7 +14,7 @@ public class DownloadImgTask extends AsyncTask<String,Integer,Bitmap>{
     }
     @Override
     protected Bitmap doInBackground(String... params) {
-        return DisplayImg.downloadImage(params[0]);
+        return ImgUtil.downloadImage(params[0]);
     }
 
     @Override

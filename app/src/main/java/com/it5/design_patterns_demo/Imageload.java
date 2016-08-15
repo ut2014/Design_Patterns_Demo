@@ -40,15 +40,20 @@ public class Imageload {
             service.submit(new Runnable() {
                 @Override
                 public void run() {
-                  Bitmap bitmap=DisplayImg.downloadImage(url);
-                    imageView.setImageBitmap(bitmap);
+                  Bitmap bitmap= ImgUtil.downloadImage(url);
+                    if (bitmap==null) {
+                        return;
+                    }
+//                    imageView.setImageBitmap(bitmap);
+                    ImgUtil.displayImg(imageView,bitmap);
                     cache.put(url,bitmap);
                 }
             });
 
         }else
         if (imageView.getTag().equals(url)) {
-            imageView.setImageBitmap(bitmap);
+//            imageView.setImageBitmap(bitmap);
+            ImgUtil.displayImg(imageView,bitmap);
         }
     }
 

@@ -3,7 +3,7 @@ package com.it5.design_patterns_demo.image01;
 import android.graphics.Bitmap;
 import android.widget.ImageView;
 
-import com.it5.design_patterns_demo.DisplayImg;
+import com.it5.design_patterns_demo.ImgUtil;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
@@ -25,20 +25,20 @@ public class ImageLoader_1 {
         final Bitmap bitmap=imageCache.get(url);
         if (bitmap!=null){
 //            imageView.setImageBitmap(bitmap);
-            new DisplayImg(imageView,bitmap);
+            ImgUtil.displayImg(imageView,bitmap);
             return;
         }
         imageView.setTag(url);
         service.submit(new Runnable() {
             @Override
             public void run() {
-                Bitmap bitmap=DisplayImg.downloadImage(url);
+                Bitmap bitmap= ImgUtil.downloadImage(url);
                 if (bitmap==null) {
                     return;
                 }
                 if (imageView.getTag().equals(url)) {
 //                    imageView.setImageBitmap(bitmap);
-                    new DisplayImg(imageView,bitmap);
+                    ImgUtil.displayImg(imageView,bitmap);
                 }
                 imageCache.put(url,bitmap);
             }

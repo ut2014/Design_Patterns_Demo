@@ -4,6 +4,8 @@ import android.graphics.Bitmap;
 import android.os.AsyncTask;
 import android.widget.ImageView;
 
+import com.it5.design_patterns_demo.util.ImgUtil;
+
 /**
  * Created by IT5 on 2016/8/15.
  */

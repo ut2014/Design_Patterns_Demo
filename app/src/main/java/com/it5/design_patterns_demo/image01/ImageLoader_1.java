@@ -3,7 +3,7 @@ package com.it5.design_patterns_demo.image01;
 import android.graphics.Bitmap;
 import android.widget.ImageView;
 
-import com.it5.design_patterns_demo.ImgUtil;
+import com.it5.design_patterns_demo.util.ImgUtil;
 
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;

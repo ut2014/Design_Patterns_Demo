@@ -3,7 +3,7 @@ package com.it5.design_patterns_demo.image03;
 import android.graphics.Bitmap;
 import android.widget.ImageView;
 
-import com.it5.design_patterns_demo.ImgUtil;
+import com.it5.design_patterns_demo.util.ImgUtil;
 import com.it5.design_patterns_demo.image01.ImageCache;
 import com.it5.design_patterns_demo.image02.DiskCache;
 

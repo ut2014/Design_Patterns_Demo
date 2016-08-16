@@ -3,9 +3,8 @@ package com.it5.design_patterns_demo.image04;
 import android.graphics.Bitmap;
 import android.widget.ImageView;
 
-import com.it5.design_patterns_demo.ImgUtil;
-import com.it5.design_patterns_demo.image01.ImageCache;
-
+import com.it5.design_patterns_demo.util.ImgUtil;
+import com.it5.design_patterns_demo.interf.IImageCache;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
@@ -14,11 +13,11 @@ import java.util.concurrent.Executors;
  */
 public class ImageLoader_4 {
     //图片缓存
-    ImageCache imageCache=new MemoryCache();
+    IImageCache imageCache=new MemoryCache();
     //
     ExecutorService service= Executors.newFixedThreadPool(Runtime.getRuntime().availableProcessors());
     //注入缓存实现
-    public void setImageCache(ImageCache cache){
+    public void setImageCache(IImageCache cache){
         imageCache=cache;
     }
 

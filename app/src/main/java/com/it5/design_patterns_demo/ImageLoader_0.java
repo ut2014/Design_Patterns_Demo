@@ -5,6 +5,8 @@ import android.util.Log;
 import android.util.LruCache;
 import android.widget.ImageView;
 
+import com.it5.design_patterns_demo.util.ImgUtil;
+
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 

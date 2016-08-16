@@ -5,7 +5,7 @@ import android.graphics.Bitmap;
 /**
  * Created by IT5 on 2016/8/15.
  */
-public interface ImageCache {
+public interface IImageCache {
     public Bitmap get(String url);
     public void put(String url,Bitmap bitmap);
 }

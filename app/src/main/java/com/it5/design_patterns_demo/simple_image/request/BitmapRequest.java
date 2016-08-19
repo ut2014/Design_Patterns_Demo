@@ -43,9 +43,17 @@ public class BitmapRequest implements Comparable<BitmapRequest> {
         imageUrlMd5= Md5Helper.toMD5(imageUrl);
     }
 
+    public ImageView getImageView(){
+        return mImageViewRef.get();
+    }
 
     @Override
     public int compareTo(BitmapRequest another) {
         return 0;
+    }
+
+    public boolean isImageViewTagValid() {
+
+        return false;
     }
 }

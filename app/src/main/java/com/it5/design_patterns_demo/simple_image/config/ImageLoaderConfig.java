@@ -32,4 +32,9 @@ public class ImageLoaderConfig {
         bitmapCache=cache;
         return this;
     }
+
+    public ImageLoaderConfig setLoadingPlaceholder(int resId) {
+        displayConfig.loadingResId=resId;
+        return this;
+    }
 }

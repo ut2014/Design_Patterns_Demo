@@ -1,5 +1,7 @@
 package com.it5.design_patterns_demo.simple_image;
 
+import android.util.Log;
+
 import com.it5.design_patterns_demo.simple_image.request.BitmapRequest;
 
 import java.util.concurrent.BlockingQueue;
@@ -35,15 +37,42 @@ public class RequestQueue {
 
     }
 
+    //启动requestdispatcher
+    private  final void startDisptchers(){
+        dispatchers=new RequestDispatcher[dispatcherNums];
+        for (int i=0;i<dispatcherNums;i++) {
+            Log.e("","启动线程");
+            dispatchers[i]= new RequestDispatcher(mRequestQueue);
+            dispatchers[i].start();
+        }
+    }
+    //不能重复添加请求
     public void addRequest(BitmapRequest request) {
-
+        if (!mRequestQueue.contains(request)) {
+            request.serialNum=this.generateSerialNumber();
+            mRequestQueue.add(request);
+        }else {
+            Log.d("", "### 请求队列中已经含有");
+        }
     }
 
+    //生成一个系列号
+    private int generateSerialNumber() {
+        return serialNumGenerator.incrementAndGet();
+    }
+
+    //停止requestDispatcher
     public void stop() {
+        if (dispatchers!=null&&dispatchers.length>0) {
+            for (int i=0;i<dispatchers.length;i++) {
+                dispatchers[i].interrupt();
+            }
+        }
 
     }
 
     public void start() {
-
+        stop();
+        startDisptchers();
     }
 }

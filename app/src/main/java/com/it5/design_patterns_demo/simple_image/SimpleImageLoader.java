@@ -7,6 +7,7 @@ import com.it5.design_patterns_demo.simple_image.cache.BitmapCache;
 import com.it5.design_patterns_demo.simple_image.cache.MemoryCache;
 import com.it5.design_patterns_demo.simple_image.config.DisplayConfig;
 import com.it5.design_patterns_demo.simple_image.config.ImageLoaderConfig;
+import com.it5.design_patterns_demo.simple_image.policy.SerialPolicy;
 import com.it5.design_patterns_demo.simple_image.request.BitmapRequest;
 
 /**
@@ -55,6 +56,7 @@ public class SimpleImageLoader {
     public void stop(){
         imageQueue.stop();
     }
+
     /**
      * 通过配置类初始化imageloader，设置线程数量，缓存策略
      */
@@ -67,7 +69,16 @@ public class SimpleImageLoader {
     }
 
     private void checkConfig() {
-
+        if (iconfig==null) {
+            throw new RuntimeException(
+                    "The config of SimpleImageLoader is Null, please call the init(ImageLoaderConfig config) method to initialize");
+        }
+        if (iconfig.loadPolicy==null) {
+            iconfig.loadPolicy=new SerialPolicy();
+        }
+        if (cache==null){
+            cache=new MemoryCache();
+        }
     }
 
     public ImageLoaderConfig getConfig() {
